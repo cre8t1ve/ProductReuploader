@@ -25,12 +25,12 @@ class Main():
             allDevProducts = self.getAllDevProducts(globals()['fromUniverse'])
 
             if allDevProducts != None:
-                for product in allDevProducts:
-                    product_name = str(product["name"])
+                for product in allDevProducts["developerProducts"]:
+                    product_name = str(product["Name"])
                     product_desc = str(product["Description"])
-                    product_price = int(product["priceInRobux"])
-                    product_image_link = self.getImageLink(product["iconImageAssetId"])
-                    old_product_id = int(product["id"])
+                    product_price = int(product["PriceInRobux"])
+                    product_image_link = self.getImageLink(product["IconImageAssetId"])
+                    old_product_id = int(product["DeveloperProductId"])
 
                     Main().uploadDevProduct(product_name, product_desc, product_price, product_image_link, old_product_id)
                     time.sleep(0.1)
@@ -47,6 +47,7 @@ class Main():
                         pass_desc = str(pass_info["Description"])
                         pass_price = int(pass_info["PriceInRobux"])
                         pass_image_link = self.getImageLink(pass_info["IconImageAssetId"])
+                        print(pass_image_link)
                         old_pass_id = int(pass_info["TargetId"])
 
                         Main().uploadGamepass(pass_name, pass_desc, pass_price, pass_image_link, old_pass_id)
@@ -79,7 +80,7 @@ class Main():
             return True
         
     def getAllDevProducts(self, targetUniverse):
-        allDevProductsResponse = requests.get(f'https://apis.roblox.com/developer-products/v1/universes/{targetUniverse}/developerproducts?pageNumber=1&pageSize=100000', headers = Main().getNewHeaders())
+        allDevProductsResponse = requests.get(f'https://apis.roblox.com/developer-products/v2/universes/{targetUniverse}/developerproducts?limit=100000', headers = Main().getNewHeaders())
 
         if allDevProductsResponse.status_code != 200:
             responseHeaders = allDevProductsResponse.headers
@@ -128,7 +129,8 @@ class Main():
         if not isinstance(imageAssetId, int):
             return None
 
-        imageResponse = requests.get(f'https://thumbnails.roblox.com/v1/assets?assetIds={imageAssetId}&returnPolicy=PlaceHolder&size=512x512&format=Png&isCircular=false', headers = Main().getNewHeaders())
+        imageResponse = requests.get(f'https://thumbnails.rotunnel.com/v1/assets?assetIds={imageAssetId}&returnPolicy=PlaceHolder&size=512x512&format=Png&isCircular=false', headers = Main().getNewHeaders())
+        print(imageResponse.json())
 
         if imageResponse.status_code != 200:
             responseHeaders = imageResponse.headers
@@ -137,7 +139,7 @@ class Main():
                 self.refreshCSRF(responseHeaders)
                 self.getImageLink(imageAssetId)
             else:
-                return ""
+                return None
         else:
             return imageResponse.json()["data"][0]["imageUrl"]
 
@@ -148,7 +150,6 @@ class Main():
 
         if isinstance(productImageLink, str):
             files = {'imageFile': BytesIO(requests.get(productImageLink).content)}
-        
 
         product_info = {
             'name': productName,
