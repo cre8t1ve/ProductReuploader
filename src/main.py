@@ -130,7 +130,6 @@ class Main():
             return None
 
         imageResponse = requests.get(f'https://thumbnails.rotunnel.com/v1/assets?assetIds={imageAssetId}&returnPolicy=PlaceHolder&size=512x512&format=Png&isCircular=false', headers = Main().getNewHeaders())
-        print(imageResponse.json())
 
         if imageResponse.status_code != 200:
             responseHeaders = imageResponse.headers
@@ -235,4 +234,5 @@ class Main():
                     print("Failed to set pass on sale.")
 
 if __name__ == '__main__':
+
     Main().init()
