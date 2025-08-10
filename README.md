@@ -1,6 +1,16 @@
 # ProductReuploader
 Pass and Product reuploader for Roblox
 
+# Simplest setup
+1. create a codespace
+2. move `cookie.txt` out of src folder
+3. paste `.ROBLOSECURITY` into `cookie.txt` and trim `_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_`
+4. run
+  - use python debugger and press play like button on the top right of screen in the `src/main.py`
+  - use shortcut for first method
+  - open a terminal and run `python src/main.py`
+5. follow what the terminal says and your gucci  
+
 <h3>How to use:</h3>
 <ol>
 <li>Install the zip file from releases, extract it and run the compiled exe</li>
