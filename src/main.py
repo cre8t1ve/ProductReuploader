@@ -47,7 +47,6 @@ class Main():
                         pass_desc = str(pass_info["Description"])
                         pass_price = int(pass_info["PriceInRobux"])
                         pass_image_link = self.getImageLink(pass_info["IconImageAssetId"])
-                        print(pass_image_link)
                         old_pass_id = int(pass_info["TargetId"])
 
                         Main().uploadGamepass(pass_name, pass_desc, pass_price, pass_image_link, old_pass_id)
