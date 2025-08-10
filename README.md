@@ -5,11 +5,20 @@ Pass and Product reuploader for Roblox
 1. create a codespace
 2. move `cookie.txt` out of src folder
 3. paste `.ROBLOSECURITY` into `cookie.txt` and trim `_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_`
+3. get cookie
+  - press right click and click on inspect
+  - a window on the right appears either click on `Application` or the `>>>` and then one `Application`
+  - under Storage in that small window on the left click on Cookies and click on `https://www.roblox.com`,
+  - click on the right side now on the `.ROBLOSECURITY` on the bottom right now a window (Cookie Value) should appear
+  - double click or copy the content of Cookie Value
+  - go to `cookie.txt` which you should have moved out of `src/cookie.txt` now and paste it there
+  - like in step 3 said cut out the exact string via replace (ctrl + f)
+  - save the file (if auto save just close it)
 4. run
   - use python debugger and press play like button on the top right of screen in the `src/main.py`
   - use shortcut for first method
   - open a terminal and run `python src/main.py`
-5. follow what the terminal says and your gucci  
+6. follow what the terminal says and your gucci  
 
 <h3>How to use:</h3>
 <ol>
